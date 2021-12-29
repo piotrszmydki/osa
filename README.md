@@ -15,7 +15,7 @@ ip 172.29.236.211 (  br-mgmt ),
 with SWIFT (script to make swift disk)
 
 hostname: compute2, 
-ip 172.29.236.212, 
+ip 172.29.236.212 (  br-mgmt ), 
 with CEPH (default ceph disk sdb,sdc,sdd)
 
 hostname: compute3, 
