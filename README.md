@@ -1,6 +1,5 @@
 ### Hi there 👋
 
-### Hi there 👋
 Source configuration files to create openstack cluster.
 
 SERVERS CONFIGURATION
