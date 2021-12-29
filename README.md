@@ -45,7 +45,7 @@ openstack-ansible setup-infrastructure.yml
 
 openstack-ansible setup-openstack.yml
 
-or openstack-ansible setup-evrything.yml (for first time better choice is enter 3 commands)
+or openstack-ansible setup-evrything.yml (for first time better choice is enter 3 commands one by one)
 
 If somthings goes wrong:
 
