@@ -35,6 +35,12 @@ compute1
 compute2
 compute3
 
+Next change directory to /etc/openstack-ansible/playbooks
+and type: openstack-ansible setup-host.yml
+openstack-ansible setup-infrastructure.yml
+openstack-ansible setup-openstack.yml
+or openstack-ansible setup-evrything.yml (for first time better choice is enter 3 commands)
+
 If somthings goes wrong:
 
 After each install of ceph you see warn error about insecure reclaim. After enter this command:
