@@ -48,6 +48,7 @@ Sometimes (if you have an error about too much pgs or somethings) you need to en
 
 ceph config set mon mon_max_pg_per_osd 900
 
+
 Other usefull commands:
 
 You can change deafult pool size by typing:
