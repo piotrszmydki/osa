@@ -3,6 +3,7 @@
 Source configuration files to create openstack cluster.
 
 SERVERS CONFIGURATION
+
 One controller: 
 hostname: controller, 
 ip 172.29.236.210 (  br-mgmt ) 
