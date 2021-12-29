@@ -38,14 +38,20 @@ compute3
 If somthings goes wrong:
 
 After each install of ceph you see warn error about insecure reclaim. After enter this command:
+
 ceph config set mon auth_allow_insecure_global_id_reclaim false
+
 ceph status will be OK.
 
+
 Sometimes (if you have an error about too much pgs or somethings) you need to enter the ceph-mon container and enter this command:
+
 ceph config set mon mon_max_pg_per_osd 900
 
 Other usefull commands:
 
 You can change deafult pool size by typing:
+
 ceph osd pool set POOL_NAME size 2
+
 ceph osd pool set POOL_NAME min_size 1
