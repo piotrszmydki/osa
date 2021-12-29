@@ -23,10 +23,10 @@ hostname: compute3,
 ip 172.29.236.213 (  br-mgmt ), 
 with LVM (script to make lvm disk)
 
-You need to prepare network bridges like: br-mgmt, add add second ethernet interface to this bridge.
+You need to prepare network bridges like: br-mgmt, add second ethernet interface to this bridge.
 Prepare disk for storage providers like swift, lvm ( with scripts )
 
-run inst.sh
+run inst.sh   
 Script shows you 2 files: 
 1. with passwords ( you can change password for openstack dashboard in line keystone_admin_password.
 2. with inventory configuration - you can add hostnames in section [hosts] like (one per line): 
