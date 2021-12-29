@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-git clone https://github.com/piotrszmydki/piotrszmydki /etc/openstack_deploy
+git clone https://github.com/piotrszmydki/osa /etc/openstack_deploy
 git clone -b master https://opendev.org/openstack/openstack-ansible /opt/openstack-ansible
 cd /opt/openstack-ansible
 scripts/bootstrap-ansible.sh
