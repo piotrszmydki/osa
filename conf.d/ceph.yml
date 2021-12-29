@@ -1,0 +1,9 @@
+ceph-mon_hosts:
+  compute2:
+    ip: 172.29.236.212
+ceph-osd_hosts:
+  compute2:
+    ip: 172.29.236.212
+ceph-rgw_hosts:
+  compute2:
+    ip: 172.29.236.212

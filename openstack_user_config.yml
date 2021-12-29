@@ -1,0 +1,222 @@
+---
+cidr_networks: &cidr_networks
+  container: 172.29.236.0/22
+  tunnel: 172.29.240.0/22
+  storage: 172.29.244.0/22
+
+used_ips:
+  - 172.29.236.1,172.29.236.50
+  - 172.29.240.1,172.29.240.50
+  - 172.29.244.1,172.29.244.50
+  - 172.29.248.1,172.29.248.50
+
+global_overrides:
+  cidr_networks: *cidr_networks
+  external_lb_vip_address: 10.40.2.210
+  internal_lb_vip_address: 172.29.236.210
+  management_bridge: "br-mgmt"
+  provider_networks:
+    - network:
+        group_binds:
+          - all_containers
+          - hosts
+        type: "raw"
+        container_bridge: "br-mgmt"
+        container_interface: "eth1"
+        container_type: "veth"
+        ip_from_q: "container"
+        is_container_address: true
+    - network:
+        group_binds:
+          - glance_api
+          - cinder_api
+          - cinder_volume
+          - nova_compute
+          # Uncomment the next line if using swift with a storage network.
+#           # - swift_proxy
+        type: "raw"
+        container_bridge: "br-storage"
+        container_type: "veth"
+        container_interface: "eth2"
+        container_mtu: "9000"
+        ip_from_q: "storage"
+    - network:
+        group_binds:
+          - neutron_linuxbridge_agent
+        container_bridge: "br-vxlan"
+        container_type: "veth"
+        container_interface: "eth10"
+        container_mtu: "9000"
+        ip_from_q: "tunnel"
+        type: "vxlan"
+        range: "1:1000"
+        net_name: "vxlan"
+    - network:
+        group_binds:
+          - neutron_linuxbridge_agent
+        container_bridge: "br-vlan"
+        container_type: "veth"
+        container_interface: "eth11"
+        type: "vlan"
+        range: "101:200,301:400"
+        net_name: "vlan"
+    - network:
+        group_binds:
+          - neutron_linuxbridge_agent
+        container_bridge: "br-vlan"
+        container_type: "veth"
+        container_interface: "eth12"
+        host_bind_override: "eth12"
+        type: "flat"
+        net_name: "flat"
+
+shared-infra_hosts:
+  controller:
+    ip: 172.29.236.210
+
+# repository (apt cache, python packages, etc)
+repo-infra_hosts:
+  controller:
+    ip: 172.29.236.210
+  compute1:
+    ip: 172.29.236.211
+  compute2:
+    ip: 172.29.236.212
+  compute3:
+    ip: 172.29.236.213
+
+# load balancer
+haproxy_hosts:
+  controller:
+    ip: 172.29.236.210
+
+###
+### OpenStack
+###
+
+# keystone
+identity_hosts:
+  controller:
+    ip: 172.29.236.210
+
+# cinder api services
+storage-infra_hosts:
+  controller:
+    ip: 172.29.236.210
+  compute1:
+    ip: 172.29.236.211
+
+# glance
+image_hosts:
+  controller:
+    ip: 172.29.236.210
+
+# placement
+placement-infra_hosts:
+  controller:
+    ip: 172.29.236.210
+
+# nova api, conductor, etc services
+compute-infra_hosts:
+  controller:
+    ip: 172.29.236.210
+
+# heat
+orchestration_hosts:
+  controller:
+    ip: 172.29.236.210
+
+# horizon
+dashboard_hosts:
+  controller:
+    ip: 172.29.236.210
+
+# neutron server, agents (L3, etc)
+network_hosts:
+  controller:
+    ip: 172.29.236.210
+  compute1:
+    ip: 172.29.236.211
+  compute2:
+    ip: 172.29.236.212
+  compute3:
+    ip: 172.29.236.213
+
+# nova hypervisors
+compute_hosts:
+  controller:
+    ip: 172.29.236.210
+  compute1:
+    ip: 172.29.236.211
+  compute2:
+    ip: 172.29.236.212
+  compute3:
+    ip: 172.29.236.213
+
+ceph-osd_hosts:
+  compute2:
+    ip: 172.29.236.212
+#    no_containers: true
+ceph-rgw_hosts:
+  compute2:
+    ip: 172.29.236.212
+#    no_containers: true
+# ceph-mon containers
+ceph-mon_hosts:
+  compute2:
+    ip: 172.29.236.212
+#    no_containers: true
+# ceph-mds containers
+ceph-mds_hosts:
+  compute2:
+    ip: 172.29.236.212
+#    no_containers: true
+# ganesha-nfs hosts
+ceph-nfs_hosts:
+  compute2:
+    ip: 172.29.236.212
+#    no_containers: true
+# cinder storage host (LVM-backed)
+storage_hosts:
+  controller:
+    ip: 172.29.236.210
+    container_vars:
+      cinder_backends:
+        limit_container_types: cinder_volume
+        lvm:
+          volume_group: cinder-volumes
+          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+          volume_backend_name: LVM_iSCSI
+          iscsi_ip_address: "172.29.236.210"
+#SWIFT
+  compute1:
+    ip: 172.29.236.211
+
+#CEPH
+  compute2:
+    ip: 172.29.236.212
+#    no_containers: true
+#    container_vars:
+#      devices:
+#        - /dev/sdb
+#        - /dev/sdc
+#        - /dev/sdd
+#LVM
+  compute3:
+    ip: 172.29.236.213
+    container_vars:
+      cinder_backends:
+        limit_container_types: cinder_volume
+        lvm:
+          volume_group: cinder-volumes
+          volume_driver: cinder.volume.drivers.lvm.LVMVolumeDriver
+          volume_backend_name: LVM_iSCSI
+          iscsi_ip_address: "172.29.236.213"
+
+log_hosts:
+  controller:
+     ip: 172.29.236.210
+
+haproxy_hosts:
+  controller:
+    ip: 172.29.236.210
