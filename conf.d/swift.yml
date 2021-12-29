@@ -1,0 +1,34 @@
+---
+global_overrides:
+  swift:
+    part_power: 8
+    storage_network: br-mgmt
+    replication_network: br-mgmt
+    drives:
+      - name: sdb
+      - name: sdc
+      - name: sdd
+    mount_point: /srv
+    storage_policies:
+      - policy:
+          name: default
+          repl_number: 1
+          index: 0
+          default: True
+swift-proxy_hosts:
+  compute1:
+    ip: 172.29.236.211
+    container_vars:
+      swift_proxy_vars:
+        limit_container_types: swift_proxy
+        read_affinity: "r1=100"
+        write_affinity: "r1"
+        write_affinity_node_count: "1 * replicas"
+swift_hosts:
+  compute11:
+    ip: 172.29.236.211
+    container_vars:
+      swift_vars:
+        limit_container_types: swift
+        zone: 0
+        region: 1
