@@ -35,8 +35,8 @@ compute1
 compute2
 compute3
 
-You can limit deployed host by adding --limit localhost,compute1
-because you can be bannedby opendev.org. :-)
+You can limit number of deploy hosts by adding --limit localhost,compute1 to openstack-ansible command at the end
+because you can be banned by opendev.org. :-)
 
 Next change directory to /etc/openstack-ansible/playbooks
 and type: openstack-ansible setup-host.yml
