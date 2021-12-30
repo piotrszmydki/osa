@@ -12,7 +12,9 @@ scp /etc/openstack_deploy/make-lvm-disk.sh root@172.29.236.213:/root/
 #cp /etc/openstack_deploy/openstack_user_config.yml.example /etc/openstack_deploy/openstack_user_config.yml
 cd /opt/openstack-ansible
 ./scripts/pw-token-gen.py --file /etc/openstack_deploy/user_secrets.yml
+echo " you can change openstack dashboard password in line keystone_admin_password: ( or exit without any changes)"
 nano /etc/openstack_deploy/user_secrets.yml
+echo " add some host to hosts section: ( where openstack will be installed)"
 nano /opt/openstack-ansible/inventory/inventory.ini
 echo "Add to the global: mon_max_pg_per_osd: 900"
 echo " and auth_allow_insecure_global_id_reclaim: false"
