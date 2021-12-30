@@ -27,13 +27,16 @@ You need to prepare network bridges like: br-mgmt, add second ethernet interface
 Prepare disk for storage providers like swift, lvm ( with scripts )
 
 run inst.sh   
-Script shows you 2 files: 
+Script shows you some files with description what yoy can do: 
 1. with passwords ( you can change password for openstack dashboard in line keystone_admin_password.
 2. with inventory configuration - you can add hostnames in section [hosts] like (one per line): 
 controller
 compute1
 compute2
 compute3
+3. add number of max pg per osd and auth allow insecure global id reclaim
+4. increse delay time from 2 to 5 in section install distro package
+5. optionally you can add venv_wheel_build_skip_check: true to /etc/openstack_deploy/user_variables.yml
 
 You can limit number of deploy hosts by adding --limit localhost,compute1 to openstack-ansible command at the end
 because you can be banned by opendev.org. :-)
