@@ -23,7 +23,7 @@ nano /opt/openstack-ansible/inventory/group_vars/ceph_all.yml
 echo " Change dalay in section install distro package from 2 to 5. #Because you will see error: connection failed"
 sleep 5
 nano /opt/openstack-ansible/playbooks/utility-install.yml
-echo " add venv_wheel_build_skip_check: true to /etc/openstack_deploy/user_variables.yml"
+echo " add venv_wheel_build_skip_check: true to /etc/openstack_deploy/user_variables.yml ( fatal with comments: ...your access may be blocked"
 sleep 5
 nano /etc/openstack_deploy/user_variables.yml
 cd /opt/openstack-ansible/playbooks
