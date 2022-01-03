@@ -1,5 +1,7 @@
 #!/bin/bash
 clear
+echo "Check /etc/hosts"
+nano /etc/hosts
 git clone https://github.com/piotrszmydki/osa /etc/openstack_deploy
 git clone -b master https://opendev.org/openstack/openstack-ansible /opt/openstack-ansible
 cd /opt/openstack-ansible
