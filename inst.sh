@@ -21,6 +21,8 @@ nano /opt/openstack-ansible/inventory/inventory.ini
 echo "Add to the global: mon_max_pg_per_osd: 900"
 echo " and auth_allow_insecure_global_id_reclaim: false"
 sleep 5
+echo "mon_max_pg_per_osd: 900" >> /opt/openstack-ansible/inventory/group_vars/ceph_all.yml
+echo "mon_auth_allow_insecure_global_id_reclaim: false" >> /opt/openstack-ansible/inventory/group_vars/ceph_all.yml
 nano /opt/openstack-ansible/inventory/group_vars/ceph_all.yml
 echo " Change dalay in section install distro package from 2 to 5. #Because you will see error: connection failed"
 sleep 5
