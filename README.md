@@ -38,7 +38,7 @@ compute3
 4. increse delay time from 2 to 5 in section install distro package
 5. optionally you can add venv_wheel_build_skip_check: true to /etc/openstack_deploy/user_variables.yml
 
-Next change directory to /etc/openstack-ansible/playbooks
+Next change directory to /opt/openstack_deploy/playbooks
 and type: openstack-ansible setup-host.yml
 
 openstack-ansible setup-infrastructure.yml
