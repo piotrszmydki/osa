@@ -27,7 +27,7 @@ You need to prepare network bridges like: br-mgmt, add second ethernet interface
 Prepare disk for storage providers like swift, lvm ( with scripts )
 
 run inst.sh   
-Script shows you some files with description what yoy can do: 
+Script shows you some files with description what you can do: 
 1. with passwords ( you can change password for openstack dashboard in line keystone_admin_password.
 2. with inventory configuration - you can add hostnames in section [hosts] like (one per line): 
 controller
